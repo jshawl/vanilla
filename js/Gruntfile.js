@@ -7,11 +7,18 @@ module.exports = function(grunt) {
 	banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       build: {
-	src: 'js/index.js',
-	dest: 'js/index.min.js'
+	src: 'dist/scripts.js',
+	dest: 'dist/scripts.min.js'
+      }
+    },
+    concat: {
+      dist: {
+        src: ['src/vendor/*.js','src/*.js'],
+        dest: 'dist/scripts.js'
       }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.registerTask('default',['uglify']);
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.registerTask('default',['concat','uglify']);
 }
