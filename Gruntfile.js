@@ -26,6 +26,12 @@ module.exports = function(grunt) {
 	}
       }
     },
+    autoprefixer: {
+      single_file: {
+        src: 'css/style.css',
+	dest:'css/style.css'
+      }
+    },
     connect: {
       server: {
 	options: {}
@@ -41,7 +47,7 @@ module.exports = function(grunt) {
       },
       scss: {
         files: ['scss/*.scss'],
-	tasks: ['sass']
+	tasks: ['sass','autoprefixer']
       },
       html: {
         files: ['*.html'],
@@ -70,6 +76,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.registerTask('default',['concat','uglify']);
   grunt.registerTask('serve', [ 'connect','watch' ]);
   grunt.registerTask('build', [ 'sass','cssmin','concat','uglify']);
